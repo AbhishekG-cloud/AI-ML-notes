@@ -1,52 +1,36 @@
-Table: Employee
+REGEXP
+=================================================================
+Pattern               Meaning                          Example
+^A                    Starts with A                     Agra
+a$                    Ends with a                       Patna
+^A.*a$                Starts with A, ends with a        Agra
+^[aeiou]              Starts with a vowel               Agra
+[aeiou]$              Ends with a vowel                 Pune
+^[aeiou].*[aeiou]$    Starts and ends with a vowel      Agra
+^[^aeiou]             Does not start with a vowel       Delhi
+[0-9]                 Contains a digit                  City7
+.                     Any single character              Aga
+.*                    Zero or more characters           Any string
+===================================================================
+SELECT CITY
+FROM STATION
+WHERE CITY REGEXP '^A';
+=================================================================
+select distinct(CITY)
+from STATION 
+where CITY REGEXP  "^[aeiou]"
+______________________________________________________________________________________________
+----------------------------------------------------------------------------------------------
+## INDEX IN SQL
+Query the Name of any student in STUDENTS who scored higher than  Marks. 
+Order your output by the last three characters of each name. 
+If two or more students both have names ending in the same 
+last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
-+-------------+---------+
-| Column Name | Type    |
-+-------------+---------+
-| id          | int     |
-| name        | varchar |
-| salary      | int     |
-| managerId   | int     |
-+-------------+---------+
-id is the primary key (column with unique values) for this table.
-Each row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.
- 
+SELECT Name
+from STUDENTS
+where Marks > 75
+order by right(Name,3),ID ASC
 
-Write a solution to find the employees who earn more than their managers.
-
-Return the result table in any order.
-
-The result format is in the following example.
-
- 
-
-Example 1:
-
-Input: 
-Employee table:
-+----+-------+--------+-----------+
-| id | name  | salary | managerId |
-+----+-------+--------+-----------+
-| 1  | Joe   | 70000  | 3         |
-| 2  | Henry | 80000  | 4         |
-| 3  | Sam   | 60000  | Null      |
-| 4  | Max   | 90000  | Null      |
-+----+-------+--------+-----------+
-Output: 
-+----------+
-| Employee |
-+----------+
-| Joe      |
-+----------+
-Explanation: Joe is the only employee who earns more than his manager.
-
-======================================================================
-======================================================================
-select e1.name as  Employee
-from  Employee as e1
-join  Employee as e2 
-on e2.id = e1.managerId
-where e1.salary > e2.salary 
-
-
-
+______________________________________________________________________________________________
+----------------------------------------------------------------------------------------------
